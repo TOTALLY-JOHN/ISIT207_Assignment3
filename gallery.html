@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gallery</title>
+    <style>
+        #galleryContainer {
+            width:auto;
+            height:650px;
+        }
+        #galleryCover {
+            width: auto;
+            height:610px;
+            background-color:#e0e0e0;
+            border:8px groove white;
+        }
+        .picture {
+            width:600px;
+            height:150px;
+            background-color:#e0e0e0;
+            border:1px dotted #7a7a7a;
+        }
+        .pictureImage {
+            width: 200px;
+            height: 150.5px;
+            background-color:#e0e0e0;
+            float: left;
+        }
+        .pictureDescription {
+            position:absolute;
+            left:230px;
+            font-family: Arial;
+        }
+        img {
+            border:6px groove white;
+        }
+    </style>
+</head>
+<body>
+    <div id="galleryContainer">
+        <h1 style="font-family:'Book Antiqua';">&nbsp; &nbsp;Gallery Page</h1>
+        <div id="galleryCover">
+            <div class="picture">
+                <div class="pictureImage">
+                    <img id="0" src="images/gallery1.jpg" width="170" height="130" alt="gallery1" style="margin-left:10px; margin-top:5px;"/>
+                </div>
+                <div class="pictureDescription"><br />
+                    <b>Title: </b> The Great Moment of Graduation at University<br /><br />
+                    <b>Description: </b><br />
+                    University Students Graduation
+                </div>
+            </div>
+            <div class="picture">
+                <div class="pictureImage">
+                    <img id="1" src="images/gallery2.jpg" width="170" height="130" alt="gallery1" style="margin-left:10px; margin-top:5px;" />
+                </div>
+                <div class="pictureDescription"><br />
+                    <b>Title: </b> The Library at University<br /><br />
+                    <b>Description: </b><br />
+                    For students to study and research
+                </div>
+            </div>
+            <div class="picture">
+                <div class="pictureImage">
+                    <img id="2" src="images/gallery3.jpg" width="170" height="130" alt="gallery1" style="margin-left:10px; margin-top:5px;" />
+                </div>
+                <div class="pictureDescription"><br />
+                    <b>Title: </b> The Peace at University<br /><br />
+                    <b>Description: </b><br />
+                    For students to get some rest and relax
+                </div>
+            </div>
+            <div class="picture">
+                <div class="pictureImage">
+                    <img id="3" src="images/gallery4.jpg" width="170" height="130" alt="gallery1" style="margin-left:10px; margin-top:5px;" />
+                </div>
+                <div class="pictureDescription"><br />
+                    <b>Title: </b> The Activities at University<br /><br />
+                    <b>Description: </b><br />
+                    For students to join activities at university
+                </div>
+            </div>
+            <span id="originalDisplay" style="position:absolute; left:635px; top:105px;">
+            </span>
+        </div>
+    </div>
+<script type="text/javascript">
+    var images = [document.getElementById("0"), document.getElementById("1"), document.getElementById("2"), document.getElementById("3")];
+    var displayArea = document.getElementById("originalDisplay");
+    for (var i = 0; i < images.length; i++) {
+        images[i].addEventListener("mouseover", function () { return showImage(this); }, true);
+        images[i].addEventListener("mouseout", hideImage, true);
+    }
+    function showImage(value) {
+        for (var i = 0; i < images.length; i++) {
+            if (value.id==i) {
+                var original_image = document.createElement("img");
+                original_image.src = images[i].src;
+                displayArea.appendChild(original_image);
+            }
+        }
+    }
+    function hideImage() {
+        while (displayArea.hasChildNodes()) {
+            displayArea.removeChild(displayArea.firstChild);
+        }
+    }
+</script>
+</body>
+</html>

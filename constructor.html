@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Constructor</title>
+    <style>
+        body {
+            background-image:url("https://cdn.pixabay.com/photo/2016/12/04/15/40/animated-1881895_1280.jpg");
+        }
+        #constructorContainer {
+            width: 1024px;
+            height: 768px;
+            margin: 0px auto 0px auto;
+            background-color: #e7e7e7;
+            border: 2px solid black;
+        }
+        #constructorHeader {
+            text-align: center;
+            height: 90px;
+            border-bottom: 2px solid black;
+        }
+        .animalButton {
+            width: 290px;
+            height: 35px;
+            font-size: 19px;
+            background-color: black;
+            color: white;
+            border: 2px solid grey;
+        }
+        table {
+            border-collapse: collapse;
+            border:2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="constructorContainer">
+        <div id="constructorHeader">
+            <h1 style="font-size:50px; font-family:'Copperplate Gothic';">Welcome to Animal World</h1>
+        </div>
+        <div id="constructorBody">
+            <div id="buttonGroup" style="text-align:center;"><br />
+            <h1 style="font-family:Corbel;">Click a button that you want to proceed.</h1>
+                <button class="animalButton" onclick="addAnimal()">ADD A NEW ANIMAL</button>&nbsp;&nbsp;
+                <button class="animalButton" onclick="showAnimal()">DISPLAY ANIMALS</button>&nbsp;&nbsp;
+                <button class="animalButton" onclick="searchAnimal()">SEARCH FOR AN ANIMAL</button>
+            </div>
+            <div id="animalDisplay"><br />
+                <span id="animalSpan" style="margin-left:20px; font-size:20px; font-family:Corbel; text-align:center;"></span>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    var animals = [];
+    function Animal(name, breed, age, sex, color, size) {
+        this.name = name;
+        this.breed = breed;
+        this.age = age;
+        this.sex = sex;
+        this.color = color;
+        this.size = size;
+    }
+    function addAnimal() {
+        var name = prompt("Input an animal's name : ");
+        while (name == null || name == "") {
+            alert("Your input is wrong!");
+            name = prompt("Input an animal's name : ");
+        }
+        var breed = prompt("Input an animal's breed : ");
+        while (breed == null || breed == "") {
+            alert("Your input is wrong!");
+            breed = prompt("Input an animal's breed : ");
+        }
+        var age = prompt("Input an animal's age : ");
+        while (age == null || age == "" || isNaN(age) || age<0) {
+            alert("Your input is wrong!");
+            age = prompt("Input an animal's age : ");
+        }
+        var sex = prompt("Input an animal's sex(male or female) : ");
+        while (sex == null || sex == "" || (sex != "male" && sex != "female" && sex != "MALE" && sex != "FEMALE")) {
+            alert("Your input is wrong!");
+            sex = prompt("Input an animal's sex(male or female) : ");
+        }
+        var color = prompt("Input an animal's color : ");
+        while (color == null || color == "") {
+            alert("Your input is wrong!");
+            color = prompt("Input an animal's color : ");
+        }
+        var size = prompt("Input an animal's size : ");
+        while (size == null || size == "") {
+            alert("Your input is wrong!");
+            size = prompt("Input an animal's size : ");
+        }
+        var animal = new Animal(name, breed, age, sex, color, size);
+        animals.push(animal);
+    }
+    function showAnimal() {
+        var displayArea = document.getElementById("animalSpan");
+        var result = "";
+        result += "<table border='1' style='margin-left:75px;'><tr><th>ANIMAL</th><th>ANIMAL NAME</th><th>ANIMAL BREED</th><th>ANIMAL AGE</th><th>ANIMAL SEX</th><th>ANIMAL COLOR</th><th>ANIMAL SIZE</th></tr>";
+        for (var i = 0; i < animals.length; i++) {
+            result += "<tr><td>" + (i + 1) + "</td>";
+            result += "<td>" + animals[i].name + "</td>";
+            result += "<td>" + animals[i].breed + "</td>";
+            result += "<td>" + animals[i].age + "</td>";
+            result += "<td>" + animals[i].sex + "</td>";
+            result += "<td>" + animals[i].color + "</td>";
+            result += "<td>" + animals[i].size + "</td>";
+            result += "</tr>";
+        }
+        result += "</table>";
+        displayArea.innerHTML = result;
+    }
+    function searchAnimal() {
+        var displayArea = document.getElementById("animalSpan");
+        var result = "";
+        var count = 0;
+        var input = prompt("Input an animal's value : ");
+        result += "<table border='1' style='margin-left:75px;'><tr><th>ANIMAL</th><th>ANIMAL NAME</th><th>ANIMAL BREED</th><th>ANIMAL AGE</th><th>ANIMAL SEX</th><th>ANIMAL COLOR</th><th>ANIMAL SIZE</th></tr>";
+        for (var i = 0; i < animals.length; i++) {
+            if (input == animals[i].name || input == animals[i].breed || input == animals[i].age || input == animals[i].sex || input == animals[i].color || input == animals[i].size) {
+                result += "<tr><td>" + (i + 1) + "</td>";
+                result += "<td>" + animals[i].name + "</td>";
+                result += "<td>" + animals[i].breed + "</td>";
+                result += "<td>" + animals[i].age + "</td>";
+                result += "<td>" + animals[i].sex + "</td>";
+                result += "<td>" + animals[i].color + "</td>";
+                result += "<td>" + animals[i].size + "</td>";
+                result += "</tr>";
+                count++;
+            }
+        }
+        if (count == 0) {
+            result = "NO DATA FOUND.";
+        }
+        else {
+            result += "</table>";
+        }
+        displayArea.innerHTML = result;
+    }
+</script>
+</body>
+</html>

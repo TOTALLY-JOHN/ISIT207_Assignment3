@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assg3 Task1</title>
+    <style>
+        button {
+            width: 150px;
+            height: 40px;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+        }
+        #textNumber {
+            color: #dddddd;
+            font-size: 17px;
+            padding: 7.9px 11.9px;
+            position: absolute;
+            right:320px;
+        }
+        h1 {
+            font-family: Maplestory;
+        }
+    </style>
+</head>
+<body>
+    <div id="slideContent" style="text-align:center;">
+        
+        <div id="cityImage">
+            <h1>Major City Image Slide Show</h1>
+            <div id="textNumber">1 / 5</div>
+            <img id="curImg" src="" width="900" height="500" alt="city" />
+            <div id="desc" class="description">Seoul, South Korea</div>
+        </div>
+        </div>
+        <div id="buttonGroup" style="text-align:center;">
+            <button id="previous" onclick="slideShow(this.id)">&#10094; &nbsp; &nbsp; Previous</button> &nbsp; &nbsp; &nbsp; &nbsp;
+            <button id="next" onclick="slideShow(this.id)">Next &nbsp; &nbsp; &#10095;</button><br />
+        </div>
+
+
+        <script type="text/javascript">
+            var idx = 0;
+            var images = ["images/city1.jpg", "images/city2.jpg", "images/city3.jpg", "images/city4.jpg", "images/city5.jpg"];
+            var desc = ["Seoul, South Korea", "Kuala Lumpur, Malaysia", "New York, America", "London, Great Britain", "Sydney, Australia"];
+            document.getElementById("curImg").src = images[0];
+
+            function slideShow(direction) {
+                var currentImage = document.getElementById("curImg");
+                var slideNumber = document.getElementById("textNumber");
+                var description = document.getElementById("desc");
+                if (direction == "previous") {
+                    if (idx == 0) {
+                        idx = images.length - 1;
+                        currentImage.src = images[idx];
+                        slideNumber.innerHTML = (idx + 1) + " / 5";
+                        description.innerHTML = desc[idx];
+                    }
+                    else {
+                        currentImage.src = images[--idx];
+                        slideNumber.innerHTML = (idx + 1) + " / 5";
+                        description.innerHTML = desc[idx];
+                    }
+                }
+                else if (direction == "next") {
+                    if (idx == images.length - 1) {
+                        idx = 0;
+                        currentImage.src = images[idx];
+                        slideNumber.innerHTML = (idx + 1) + " / 5";
+                        description.innerHTML = desc[idx];
+                    }
+                    else {
+                        currentImage.src = images[++idx];
+                        slideNumber.innerHTML = (idx + 1) + " / 5";
+                        description.innerHTML = desc[idx];
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
